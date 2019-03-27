@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name = "white">#ffffff</color>
+    <color name="lightGray">#A7A7A7</color>
+    <color name="colorPrimary">#272d63</color>
+    <color name="colorPrimaryDark">#00574b</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="GreenGray">#c6efcc</color>
+    <color name="CrimsonSky">#cf6766</color>
+    <color name="Indigo">#30415d</color>
+    <color name="IndigoDark">#1a2433</color>
+    <color name="Ultramarine">#031424</color>
+    <color name="LightBlue">#8eaebd</color>
+    <color name="shadow">#99031424</color>
+    <color name="indigobg">#263753</color>
+    <color name="correctGreen">#8EBD99</color>
+    <color name="cChoiceGreen">#36A53A</color>
+    <color name="incorrectRed">#B72624</color>
+    <color name="Indigolight">#273651</color>
+</resources>
