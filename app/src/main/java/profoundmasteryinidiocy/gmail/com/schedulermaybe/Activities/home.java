@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +37,7 @@ public class home extends AppCompatActivity {
                     home.this.startActivity(categorySelectionIntent);
                     return true;
                 case R.id.navigation_profile:
+                    Toast.makeText(getApplicationContext(), "This feature isn't available yet!", Toast.LENGTH_SHORT).show();
                     return true;
             }
             return false;
@@ -88,9 +90,9 @@ public class home extends AppCompatActivity {
                 selectedTopic = allTopics.get(index);
                 topicTexts[x].setText(selectedTopic);
 
-                 inFBLA = cateF.contains(selectedTopic);
+                inFBLA = cateF.contains(selectedTopic);
                 inBSkills = cateB.contains(selectedTopic);
-               inCEvents = cateC.contains(selectedTopic);
+                inCEvents = cateC.contains(selectedTopic);
                 allTopics.remove(allTopics.get(index));
                 clickCards[x].setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -122,13 +124,28 @@ public class home extends AppCompatActivity {
 //        points.setText(String.valueOf(pointsval));
 
         CardView testButton = findViewById(R.id.test);
-
+        CardView createButton = findViewById(R.id.create);
+        CardView profileButton = findViewById(R.id.viewStats);
 
         testButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent categorySelectionIntent = new Intent(home.this, categorySelection.class);
                 home.this.startActivity(categorySelectionIntent);
+            }
+        });
+        createButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "This feature isn't available yet!", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "This feature isn't available yet!", Toast.LENGTH_SHORT).show();
+
             }
         });
     }

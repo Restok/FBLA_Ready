@@ -10,6 +10,7 @@ import android.text.Selection;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import profoundmasteryinidiocy.gmail.com.schedulermaybe.R;
 
@@ -30,10 +31,10 @@ public class categorySelection extends AppCompatActivity {
                     startActivity(intent);
                     return true;
                 case R.id.navigation_test:
-                    mTextMessage.setText(R.string.title_dashboard);
                     return true;
                 case R.id.navigation_profile:
-                    mTextMessage.setText(R.string.title_notifications);
+                    Toast.makeText(getApplicationContext(), "This feature isn't available yet!", Toast.LENGTH_SHORT).show();
+
                     return true;
             }
             return false;
@@ -45,12 +46,13 @@ public class categorySelection extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
-        mTextMessage = (TextView) findViewById(R.id.message);
         fblaCard = findViewById(R.id.fbla_card);
         businessCard = findViewById(R.id.business_card);
         eventsCard = findViewById(R.id.events_card);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        //JUST A CLICK LISTENER FOR EACH CATEGORY DIRECTING TO THEIR TOPIC SELECTION PAGE
         fblaCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,6 +79,7 @@ public class categorySelection extends AppCompatActivity {
                 categorySelection.this.startActivity(topicSelectIntent);
             }
         });
+        //--------------------------------------------------------------------------------
     }
 }
 

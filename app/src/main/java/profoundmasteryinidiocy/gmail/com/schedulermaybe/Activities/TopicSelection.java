@@ -20,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -29,12 +30,14 @@ import profoundmasteryinidiocy.gmail.com.schedulermaybe.R;
 
 public class TopicSelection extends AppCompatActivity {
 
-    private TextView mTextMessage;
     private DatabaseHandler db;
     private AlertDialog.Builder dialogBuilder;
     private AlertDialog dialog;
     private Spinner questionCount;
     private Spinner dropdown;
+    private Button back;
+
+    //BOTTOM NAVIGATION LISTENER
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -50,6 +53,8 @@ public class TopicSelection extends AppCompatActivity {
                     TopicSelection.this.startActivity(categorySelectionIntent);
                     return true;
                 case R.id.navigation_profile:
+                    Toast.makeText(getApplicationContext(), "This feature isn't available yet!", Toast.LENGTH_SHORT).show();
+
                     return true;
             }
             return false;
@@ -61,18 +66,30 @@ public class TopicSelection extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_topic_selection);
 
-        mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
+
         dropdown = findViewById(R.id.topicSelect);
         db = new DatabaseHandler(this);
+        back = findViewById(R.id.backhome);
+
+        //BACK BUTTON CONFIG
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent categorySelection = new Intent(TopicSelection.this, profoundmasteryinidiocy.gmail.com.schedulermaybe.Activities.categorySelection.class);
+                startActivity(categorySelection);
+            }
+        });
+
 
         Bundle extras = getIntent().getExtras();
         String category = extras.getString("Category");
         List<String> topicList = db.getTopicListByCategory(category);
         Log.d("The category", topicList.toString());
 
+        //SET UP SPINNER DROPDOWN ADAPTER
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, topicList){
             Typeface font = ResourcesCompat.getFont(getContext(), R.font.open_sans_bold);
 
@@ -96,6 +113,8 @@ public class TopicSelection extends AppCompatActivity {
 //            dropdown.setSelection(adapter.getPosition(extras.getString("topic")));
 //        }
 
+
+        //START QUIZ TRIGGER
         Button goButton = findViewById(R.id.popup_button);
 
         goButton.setOnClickListener(new View.OnClickListener() {
@@ -105,21 +124,23 @@ public class TopicSelection extends AppCompatActivity {
             }
         });
     }
-
     private void createQuizStartPopup(final String topic) {
+        //GETS XML AND INFLATES IT
         dialogBuilder = new AlertDialog.Builder(this);
         View view = getLayoutInflater().inflate(R.layout.quiz_start_popup, null);
-
-
         dialogBuilder.setView(view);
         dialog = dialogBuilder.create();
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
+
+
         Button startQuizButton = view.findViewById(R.id.start_button);
         Button exitButton  = view.findViewById(R.id.close_button);
          questionCount = view.findViewById(R.id.question_select);
-        Integer[] numChoices = new Integer[]{5, 10, 15, 20};
 
+         //DROPDOWN PARAMETERS
+         List<Integer> numChoices = new Integer[]{5, 10, 15, 20};
+        //SET UP DROPDOWN ADAPTER
         ArrayAdapter<Integer> questionsNumSelect = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_dropdown_item, numChoices){
             Typeface font = ResourcesCompat.getFont(getContext(), R.font.open_sans_bold);
 
@@ -138,6 +159,8 @@ public class TopicSelection extends AppCompatActivity {
             }
 
         };
+
+        //START THE QUIZ
         startQuizButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

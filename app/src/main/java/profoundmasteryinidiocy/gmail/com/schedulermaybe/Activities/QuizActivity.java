@@ -27,6 +27,8 @@ import profoundmasteryinidiocy.gmail.com.schedulermaybe.R;
 import profoundmasteryinidiocy.gmail.com.schedulermaybe.Model.*;
 
 public class QuizActivity extends AppCompatActivity implements Serializable {
+
+    //A BUNCH OF VARIABLES INITIALIZATION
     private TextView questionTextView;
     private TextView choiceOne;
     private TextView choiceTwo;
@@ -49,15 +51,22 @@ public class QuizActivity extends AppCompatActivity implements Serializable {
     private TextView topicTV;
     private Chronometer chronometer;
     private boolean canClickAgain = true;
-
+    //-------------------------------------------------------
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_quiz);
+
+        //STARTS THE TIMER
         chronometer = findViewById(R.id.timer);
         chronometer.setBase(SystemClock.elapsedRealtime());
         chronometer.start();
+        //--------------------
+
+        //INITS QUESTIONS AND CHOICES TEXT VIEWS
         questionTextView = findViewById(R.id.question_text);
         choiceOne = findViewById(R.id.choice1);
         choiceTwo = findViewById(R.id.choice2);
@@ -75,6 +84,8 @@ public class QuizActivity extends AppCompatActivity implements Serializable {
         topic = quizInfo.getString("topic");
         topicTV.setText(topic);
         questionTotal = Integer.parseInt(quizInfo.getString("Number"));
+
+        //GET ALL THE QUESTIONS FROM THE GIVEN TOPIC
         db = new DatabaseHandler(this);
         chosen = new ArrayList<>();
         questionsGiven = new ArrayList<>();
@@ -83,13 +94,16 @@ public class QuizActivity extends AppCompatActivity implements Serializable {
             questionTotal = allQuestionsBank.size();
         }
 
+        //START THE QUIZ PROCESS
         imScaredOfRecursiveFunctionsButImGonnaTryThis(allQuestionsBank, questionTotal);
 
     }
 
     public void imScaredOfRecursiveFunctionsButImGonnaTryThis(List<Question> questions, final int count) {
+        //BASE CASE ON THE LAST QUESTION
         if (count == 1) {
 
+            //GET QUESTION
             final Question question = getRandomQuestion(questions);
             questions.remove(question);
             questionTextView.setText(question.getQuestion());
@@ -99,6 +113,7 @@ public class QuizActivity extends AppCompatActivity implements Serializable {
             }
             Collections.shuffle(questionOrder);
 
+            //RANDOMIZES THE CHOICES SO THE RIGHT ANSWER ISN'T ALWAYS IN THE SAME SPOT
             String qc = questionTotal - (count-1) + "/" + questionTotal;
             questionCount.setText(qc);
             for (int c = 0; c < 4; c++) {
@@ -118,16 +133,18 @@ public class QuizActivity extends AppCompatActivity implements Serializable {
                 }
                 final int finalC = c;
 
+            //CLICK LISTENER FOR THE CHOICES
                 choices[c].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         if(canClickAgain) {
                             chosen.add(choicesSelection[finalC].getText().toString());
                             questionsGiven.add(question);
-
+                            //SEND TO RESULTS PAGE
                             Intent resultsIntent = new Intent(QuizActivity.this, QuizResults.class);
                             resultsIntent.putStringArrayListExtra("Selected Answers", (ArrayList<String>) chosen);
                             resultsIntent.putParcelableArrayListExtra("Questions", (ArrayList<? extends Parcelable>) questionsGiven);
+                            resultsIntent.putExtra("time",(SystemClock.elapsedRealtime() - chronometer.getBase()));
                             startActivity(resultsIntent);
                             canClickAgain = false;
                         }
@@ -136,6 +153,7 @@ public class QuizActivity extends AppCompatActivity implements Serializable {
             }
 
         } else {
+            //ALL THE OTHER CASES
 
             final Question question = getRandomQuestion(questions);
             questions.remove(question);
@@ -181,7 +199,7 @@ public class QuizActivity extends AppCompatActivity implements Serializable {
         }
 
     }
-
+    //GETS RANDOM QUESTION
     public Question getRandomQuestion(List<Question> questions){
         Random rand = new Random();
         int randomIndex = rand.nextInt(questions.size());

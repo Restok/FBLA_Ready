@@ -1,11 +1,13 @@
 package profoundmasteryinidiocy.gmail.com.schedulermaybe.Activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TableRow;
 
@@ -32,6 +34,7 @@ public class ResultDetails extends AppCompatActivity {
     private Bundle extras;
     private RecyclerView questionsDetail;
     private TextView overallScore;
+    private Button exitButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +57,14 @@ public class ResultDetails extends AppCompatActivity {
 
         MyRecyclerAdapter adapter = new MyRecyclerAdapter(questionsGiven, chosen, this);
         questionsDetail.setAdapter(adapter);
-
+        exitButton = findViewById(R.id.exitToHome);
+        exitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent home = new Intent(ResultDetails.this, home.class);
+                startActivity(home);
+            }
+        });
         int count = 0;
 
 

@@ -21,7 +21,7 @@ public class QuizResults extends AppCompatActivity {
     private Bundle quizInfo;
     private TextView score;
     private Button detailsButton;
-
+    private TextView timeTaken;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +31,7 @@ public class QuizResults extends AppCompatActivity {
         List<Question> questionsGiven;
         questionsGiven = getIntent().getParcelableArrayListExtra("Questions");
         final ArrayList<String> chosenAnswers = quizInfo.getStringArrayList("Selected Answers");
-
+        long milliseconds = quizInfo.getLong("time");
 
         Log.d("Chosen answers", chosenAnswers.toString());
         int correct = 0;
@@ -43,6 +43,8 @@ public class QuizResults extends AppCompatActivity {
         score = findViewById(R.id.score);
         score.setText(correct + "/" + questionsGiven.size());
 
+        timeTaken = findViewById(R.id.timetaken);
+        timeTaken.setText("Time: " + (milliseconds/1000)%60 + ": " + (milliseconds/1000-((milliseconds/1000)%60))/60);
         final List<Question> finalQuestionsGiven = new ArrayList<>(questionsGiven);
         final double finalCorrect = correct;
         detailsButton.setOnClickListener(new View.OnClickListener() {
