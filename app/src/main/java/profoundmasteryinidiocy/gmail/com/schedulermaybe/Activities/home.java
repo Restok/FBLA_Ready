@@ -24,6 +24,8 @@ public class home extends AppCompatActivity {
 
     private DatabaseHandler db;
     private List<String> allTopics;
+
+    //BOTTOM NAV LISTENER
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -43,6 +45,9 @@ public class home extends AppCompatActivity {
             return false;
         }
     };
+
+
+    //XML LAYOUT INITS
     private TextView topic1;
     private TextView topic2;
     private TextView topic3;
@@ -60,13 +65,18 @@ public class home extends AppCompatActivity {
     private String selectedTopic;
     private TextView[] topicTexts;
     private CardView[] clickCards;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        //INIT XML STUFF
+
         db = new DatabaseHandler(this);
         allTopics = db.getTopicList();
         topic1 = findViewById(R.id.topic1);
@@ -79,10 +89,12 @@ public class home extends AppCompatActivity {
         tcard4 = findViewById(R.id.topic4_card);
          topicTexts = new TextView[]{topic1, topic2, topic3, topic4};
          clickCards = new CardView[]{tcard1, tcard2, tcard3, tcard4};
+
+         //GET TOPICS OF EACH CATEGORY
         final List<String> cateF = db.getTopicListByCategory("fbla_essentials");
         final List<String> cateB = db.getTopicListByCategory("business_skills");
         final List<String> cateC = db.getTopicListByCategory("competitive_events");
-        Log.d("HOWMANY", String.valueOf(allTopics.size()));
+
         for(int x = 0; x<topicTexts.length;x++){
             int index = (int) Math.floor(Math.random()*allTopics.size());
             Log.d("the num", String.valueOf(index));

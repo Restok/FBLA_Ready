@@ -1,0 +1,7 @@
+#Wed Mar 27 23:52:09 MST 2019
+base.0=C\:\\Users\\amber\\AndroidStudioProjects\\schedulermaybe\\schedulermaybe\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\out
+path.1=classes.dex
+renamed.1=classes2.dex
+path.0=classes.dex
+renamed.0=classes.dex
+base.1=C\:\\Users\\amber\\AndroidStudioProjects\\schedulermaybe\\schedulermaybe\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\out

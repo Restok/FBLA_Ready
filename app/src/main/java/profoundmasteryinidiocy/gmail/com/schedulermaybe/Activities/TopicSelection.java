@@ -139,7 +139,7 @@ public class TopicSelection extends AppCompatActivity {
          questionCount = view.findViewById(R.id.question_select);
 
          //DROPDOWN PARAMETERS
-         List<Integer> numChoices = new Integer[]{5, 10, 15, 20};
+         Integer[] numChoices = new Integer[]{5, 10, 15, 20};
         //SET UP DROPDOWN ADAPTER
         ArrayAdapter<Integer> questionsNumSelect = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_dropdown_item, numChoices){
             Typeface font = ResourcesCompat.getFont(getContext(), R.font.open_sans_bold);
