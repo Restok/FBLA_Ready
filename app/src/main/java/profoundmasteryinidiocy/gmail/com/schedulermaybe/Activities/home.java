@@ -95,6 +95,7 @@ public class home extends AppCompatActivity {
         final List<String> cateB = db.getTopicListByCategory("business_skills");
         final List<String> cateC = db.getTopicListByCategory("competitive_events");
 
+        //SETS UP THE EXPLORE TOPICS
         for(int x = 0; x<topicTexts.length;x++){
             int index = (int) Math.floor(Math.random()*allTopics.size());
             Log.d("the num", String.valueOf(index));
@@ -102,10 +103,13 @@ public class home extends AppCompatActivity {
                 selectedTopic = allTopics.get(index);
                 topicTexts[x].setText(selectedTopic);
 
+                //FINDS OUT WHICH CATEGORY ITS IN
                 inFBLA = cateF.contains(selectedTopic);
                 inBSkills = cateB.contains(selectedTopic);
                 inCEvents = cateC.contains(selectedTopic);
                 allTopics.remove(allTopics.get(index));
+
+                //OPENS THE TOPIC SELECTION PAGE WITH THE GIVEN CATEGORY AND TOPIC
                 clickCards[x].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -135,6 +139,7 @@ public class home extends AppCompatActivity {
 //        int pointsval = intent.getIntExtra("points", 0);
 //        points.setText(String.valueOf(pointsval));
 
+        //HOME NAVIGATION
         CardView testButton = findViewById(R.id.test);
         CardView createButton = findViewById(R.id.create);
         CardView profileButton = findViewById(R.id.viewStats);

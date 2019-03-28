@@ -1,5 +1,4 @@
 <?php
-    $conn = mysqli_connect("localhost", "root", "SomethingUncreative", "Unlazy");
     
     $username = $_POST["username"];
     $password = $_POST["password"];

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\amber\\AndroidStudioProjects\\schedulermaybe\\schedulermaybe\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v25\\values-v25.xml",
+            "outputFile": "/home/csstudent/StudioProjects/FBLA_Ready/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v25/values-v25.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\amber\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\8b1cac60bc6ccf52915578b46925338c\\res\\values-v25\\values-v25.xml",
+                    "source": "/home/csstudent/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/b705aaa790ed1dc1dda96ece8ba669c0/res/values-v25/values-v25.xml",
                     "from": {
                         "startLines": "2,3,4,6",
                         "startColumns": "4,4,4,4",
