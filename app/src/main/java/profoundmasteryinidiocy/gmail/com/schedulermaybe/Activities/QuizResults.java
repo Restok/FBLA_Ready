@@ -1,6 +1,7 @@
 package profoundmasteryinidiocy.gmail.com.schedulermaybe.Activities;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -56,6 +57,16 @@ public class QuizResults extends AppCompatActivity {
                 details.putExtra("correct", finalCorrect);
                 startActivity(details);
 
+            }
+        });
+
+        final Button twitter = findViewById(R.id.postTwitter);
+        twitter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("https://twitter.com/"));
+                startActivity(browserIntent);
             }
         });
 

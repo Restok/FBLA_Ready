@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                                 builder.setMessage("Login Failed")
                                         .setNegativeButton("Retry", null)
                                         .create()
-                                        .show();                            }
+                                        .show();}
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

@@ -1026,6 +1026,7 @@ drawable avd_hide_password
 drawable avd_show_password
 drawable back
 drawable backbutton
+drawable baseline_bug_report_white_48dp
 drawable business_skills
 drawable business_skills_text
 drawable businessbox
@@ -1134,6 +1135,7 @@ drawable tooltip_frame_light
 drawable topic
 drawable topicheading
 drawable topicrect
+drawable twitter
 drawable usethisnotgonna
 drawable viewyourstats
 drawable youstudied
@@ -1184,6 +1186,9 @@ id beginning
 id bgforresults
 id blocking
 id bottom
+id bug_details
+id bug_type_select
+id bugreport
 id business_card
 id business_skill_text
 id buttonPanel
@@ -1191,6 +1196,7 @@ id buttons
 id cCard
 id cCard_text
 id cancel_action
+id cancel_bug
 id cardView
 id center
 id center_horizontal
@@ -1273,6 +1279,7 @@ id imageView15
 id imageView16
 id imageView17
 id imageView18
+id imageView19
 id imageView2
 id imageView20
 id imageView3
@@ -1328,6 +1335,7 @@ id percent
 id pin
 id pointvalue
 id popup_button
+id postTwitter
 id progress_circular
 id progress_horizontal
 id qCard
@@ -1379,6 +1387,7 @@ id search_src_text
 id search_voice_btn
 id select_dialog_listview
 id selected
+id sendBugButton
 id shortcut
 id showCustom
 id showHome
@@ -1422,6 +1431,7 @@ id textView3
 id textView4
 id textView5
 id textView6
+id textView7
 id text_input_password_toggle
 id textinput_counter
 id textinput_error
@@ -1519,6 +1529,7 @@ layout activity_register
 layout activity_result_details
 layout activity_test
 layout activity_topic_selection
+layout bugreport
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
 layout design_layout_snackbar

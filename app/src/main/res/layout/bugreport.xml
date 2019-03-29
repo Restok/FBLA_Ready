@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/LightBlue"
+        app:cardCornerRadius="15dp"
+        android:layout_margin="15dp"
+        >
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="37dp"
+            android:layout_marginEnd="37dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="25dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BUG REPORT"
+                android:textColor="@android:color/background_dark"
+                android:textSize="25dp"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/open_sans_bold"
+                android:layout_marginBottom="10dp"
+
+                />
+            <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans"
+            android:text="Category"
+            android:textSize="18dp"
+                android:textColor="@android:color/background_dark"
+                />
+        <RelativeLayout
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:background="@color/CrimsonSky">
+
+            <Spinner
+                android:id="@+id/bug_type_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+        </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans"
+                android:layout_marginTop="10dp"
+                android:text="Details"
+                android:textSize="18dp"
+                android:textColor="@android:color/background_dark"
+
+                />
+
+            <EditText
+                android:id="@+id/bug_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:hint="Describe the issue..."
+
+                android:padding="10dp" />
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:gravity="center_horizontal">
+
+                <Button
+                    android:id="@+id/sendBugButton"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:background="@color/IndigoDark"
+                    android:fontFamily="@font/open_sans"
+                    android:text="SEND"
+                    android:textColor="@android:color/background_light"
+                    android:textSize="12sp"
+                    android:layout_weight="1"
+                    />
+
+                <Button
+                    android:id="@+id/cancel_bug"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="10dp"
+                    android:background="@color/IndigoDark"
+                    android:fontFamily="@font/open_sans"
+                    android:text="NEVERMIND"
+                    android:textColor="@android:color/background_light"
+                    android:textSize="12sp" />
+            </TableRow>
+        </LinearLayout>
+
+
+    </android.support.v7.widget.CardView>
+</RelativeLayout>

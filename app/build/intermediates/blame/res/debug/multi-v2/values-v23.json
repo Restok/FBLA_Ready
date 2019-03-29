@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/csstudent/StudioProjects/FBLA_Ready/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v23/values-v23.xml",
+            "outputFile": "C:\\Users\\amber\\AndroidStudioProjects\\schedulermaybe\\schedulermaybe\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v23\\values-v23.xml",
             "map": [
                 {
-                    "source": "/home/csstudent/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/b705aaa790ed1dc1dda96ece8ba669c0/res/values-v23/values-v23.xml",
+                    "source": "C:\\Users\\amber\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\8b1cac60bc6ccf52915578b46925338c\\res\\values-v23\\values-v23.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,19,32,33,34,35,36",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
@@ -15,7 +15,7 @@
                     }
                 },
                 {
-                    "source": "/home/csstudent/.gradle/caches/transforms-1/files-1.1/cardview-v7-28.0.0.aar/926457a2f2fe66eecb6602cc844fdce7/res/values-v23/values-v23.xml",
+                    "source": "C:\\Users\\amber\\.gradle\\caches\\transforms-1\\files-1.1\\cardview-v7-28.0.0.aar\\05ba90343ee0db2bbcfb31bada09d71b\\res\\values-v23\\values-v23.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

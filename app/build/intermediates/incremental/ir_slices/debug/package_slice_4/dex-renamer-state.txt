@@ -1,4 +1,4 @@
-#Thu Mar 28 08:46:23 MST 2019
-base.0=/home/csstudent/StudioProjects/FBLA_Ready/app/build/intermediates/transforms/dexMerger/debug/4
+#Thu Mar 28 17:23:10 MST 2019
+base.0=C\:\\Users\\amber\\AndroidStudioProjects\\schedulermaybe\\schedulermaybe\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\4
 path.0=classes.dex
 renamed.0=classes.dex

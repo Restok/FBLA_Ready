@@ -1,16 +1,33 @@
 package profoundmasteryinidiocy.gmail.com.schedulermaybe.Activities;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.content.res.ResourcesCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,12 +36,18 @@ import profoundmasteryinidiocy.gmail.com.schedulermaybe.Data.DatabaseHandler;
 import profoundmasteryinidiocy.gmail.com.schedulermaybe.Model.Question;
 
 import profoundmasteryinidiocy.gmail.com.schedulermaybe.R;
+import profoundmasteryinidiocy.gmail.com.schedulermaybe.Requests.LoginRequest;
+import profoundmasteryinidiocy.gmail.com.schedulermaybe.Requests.writeBugRequest;
 
 public class home extends AppCompatActivity {
 
     private DatabaseHandler db;
     private List<String> allTopics;
-
+    private AlertDialog.Builder dialogBuilder;
+    private AlertDialog dialog;
+    private Spinner bugType;
+    private Spinner dropdown;
+    private Button back;
     //BOTTOM NAV LISTENER
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -65,7 +88,7 @@ public class home extends AppCompatActivity {
     private String selectedTopic;
     private TextView[] topicTexts;
     private CardView[] clickCards;
-
+    private Button reportBug;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -139,11 +162,13 @@ public class home extends AppCompatActivity {
 //        int pointsval = intent.getIntExtra("points", 0);
 //        points.setText(String.valueOf(pointsval));
 
+
         //HOME NAVIGATION
         CardView testButton = findViewById(R.id.test);
         CardView createButton = findViewById(R.id.create);
         CardView profileButton = findViewById(R.id.viewStats);
 
+        //GO TO TEST ACTIVITY
         testButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -151,6 +176,7 @@ public class home extends AppCompatActivity {
                 home.this.startActivity(categorySelectionIntent);
             }
         });
+
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -165,6 +191,85 @@ public class home extends AppCompatActivity {
 
             }
         });
+
+        //BUG REPORT BUTTON
+        reportBug.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createBugReport();
+            }
+        });
+
+    }
+    private void createBugReport() {
+        //GETS XML AND INFLATES IT
+        dialogBuilder = new AlertDialog.Builder(this);
+        View view = getLayoutInflater().inflate(R.layout.bugreport, null);
+        dialogBuilder.setView(view);
+        dialog = dialogBuilder.create();
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
+
+
+        Button sendButton = view.findViewById(R.id.sendBugButton);
+        Button exitButton  = view.findViewById(R.id.cancel_bug);
+        final EditText et = view.findViewById(R.id.bug_details);
+        bugType = view.findViewById(R.id.bug_type_select);
+
+        //DROPDOWN PARAMETERS
+        String[] bugTypes = new String[]{"Malfunctioning components", "Question Error", "App crashes", "Other"};
+
+
+        //SET UP DROPDOWN ADAPTER
+        final ArrayAdapter<String> bugtypeselect = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, bugTypes){
+
+            Typeface font = ResourcesCompat.getFont(getContext(), R.font.open_sans_bold);
+
+            public View getView(int position, View convertView, ViewGroup parent) {
+                TextView view = (TextView) super.getView(position, convertView, parent);
+                view.setTypeface(font);
+//        view.setTextSize();
+                return view;
+            }
+
+            // Affects opened state of the spinner
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                TextView view = (TextView) super.getDropDownView(position, convertView, parent);
+                view.setTypeface(font);
+                return view;
+            }
+
+        };
+        bugType.setAdapter(bugtypeselect);
+
+        //WRITES THE BUG REPORT TO REMOTE SERVER
+        sendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String category = bugType.getSelectedItem().toString();
+                String details = et.getText().toString();
+
+                writeBugRequest br = new writeBugRequest(category, details, null);
+
+                //Starts the request
+                RequestQueue queue = Volley.newRequestQueue(home.this);
+                queue.add(br);
+                };
+
+            });
+
+
+        exitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+
+
+
     }
 
 }
