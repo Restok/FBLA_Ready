@@ -1,1 +1,1 @@
-Yeah yeah
+Submission for the FBLA mobile app development competition.
